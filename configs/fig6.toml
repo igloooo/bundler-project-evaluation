@@ -20,10 +20,10 @@
         listen_port = 28316
     [topology.outbox]
         name = "host3"
-        ifaces = [{dev = "ens33", addr = "192.168.213.138"}]
+        ifaces = [{dev = "ens33", addr = "192.168.213.140"}]
     [topology.receiver]
         name = "host3"
-        ifaces = [{dev = "ens33", addr = "192.168.213.138"}]
+        ifaces = [{dev = "ens33", addr = "192.168.213.140"}]
 
 [sysctl]
 "net.ipv4.tcp_rmem" = "4096 87380   6291456"

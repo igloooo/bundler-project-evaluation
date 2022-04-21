@@ -1,29 +1,29 @@
-#[topology]
-#    [topology.cloudlab]
-#        username = "my-username"
-#        password = "my-cloudlab-password"
-#    [topology.inbox]
-#        listen_port = 28316
-## use to manually specify nodes
 [topology]
-    [topology.sender]
-        name = "host0"
-        ifaces = [{dev = "ens0", addr = "192.168.39.136"}]
+    [topology.cloudlab]
+        username = "my-username"
+        password = "my-cloudlab-password"
     [topology.inbox]
-        name = "host1"
-        user = "my-username"
-        ifaces = [
-            {dev = "eth0", addr = "192.168.39.137"},
-            {dev = "eth1", addr = "192.168.39.139"},
-        ]
         listen_port = 28316
-        self = true
-    [topology.outbox]
-        name = "host2"
-        ifaces = [{dev = "eth0", addr = "192.168.39.140"}]
-    [topology.receiver]
-        name = "host2"
-        ifaces = [{dev = "eth0", addr = "192.168.39.140"}]
+# use to manually specify nodes
+#[topology]
+#    [topology.sender]
+#        name = "host0"
+#        ifaces = [{dev = "eth0", addr = "10.0.0.1"}]
+#    [topology.inbox]
+#        name = "host1"
+#        user = "my-username"
+#        ifaces = [
+#            {dev = "eth0", addr = "10.0.0.2"},
+#            {dev = "eth1", addr = "10.0.1.1"},
+#        ]
+#        listen_port = 28316
+#        self = true
+#    [topology.outbox]
+#        name = "host2"
+#        ifaces = [{dev = "eth0", addr = "10.0.1.2"}]
+#    [topology.receiver]
+#        name = "host2"
+#        ifaces = [{dev = "eth0", addr = "10.0.1.2"}]
 
 [sysctl]
 "net.ipv4.tcp_rmem" = "4096000 4096000 12582912"
