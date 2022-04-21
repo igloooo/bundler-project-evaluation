@@ -1,28 +1,30 @@
-[topology]
-    [topology.cloudlab]
-        username = "my-username"
-        password = "my-cloudlab-password"
-    [topology.inbox]
-        listen_port = 28316
-# use to manually specify nodes
 #[topology]
-#    [topology.sender]
-#        name = "host0"
-#        ifaces = [{dev = "eth0", addr = "10.0.0.1"}]
+#    [topology.cloudlab]
+#        username = "my-username"
+#        password = "my-cloudlab-password"
 #    [topology.inbox]
-#        name = "host1"
-#        user = "my-username"
-#        ifaces = [
-#            {dev = "eth0", addr = "10.0.0.2"},
-#            {dev = "eth1", addr = "10.0.1.1"},
-#        ]
 #        listen_port = 28316
-#    [topology.outbox]
-#        name = "host2"
-#        ifaces = [{dev = "eth0", addr = "10.0.1.2"}]
-#    [topology.receiver]
-#        name = "host2"
-#        ifaces = [{dev = "eth0", addr = "10.0.1.2"}]
+# use to manually specify nodes
+[topology]
+    [topology.sender]
+        self = true
+        name = "host1"
+        ifaces = [{dev = "ens33", addr = "192.168.39.136"}]
+    [topology.inbox]
+        name = "host2"
+        user = "arifiorino"
+        ifaces = [
+            {dev = "ens33", addr = "192.168.39.137"},
+            {dev = "ens37", addr = "192.168.39.139"},
+        ]
+        listen_port = 28316
+    [topology.outbox]
+        name = "host3"
+        ifaces = [{dev = "ens33", addr = "192.168.39.138"}]
+    [topology.receiver]
+        name = "host3"
+        ifaces = [{dev = "ens33", addr = "192.168.39.138"}]
+
 
 [sysctl]
 "net.ipv4.tcp_rmem" = "4096000 4096000 12582912"
@@ -39,10 +41,10 @@ fifo_downlink = { queue = "codel", args="target=200,interval=5,packets=2000" }
 fifo_uplink = { queue = "droptail" }
 
 [structure]
-bundler_root = "~/bundler-script"
+bundler_root = "/home/arifiorino/bundler-script"
 
 [distributions]
-CAIDA_CDF = "~/bundler-script/distributions/CAIDA_CDF"
+CAIDA_CDF = "/home/arifiorino/bundler-script/distributions/CAIDA_CDF"
 
 [ccp]
     [ccp.nimbus]
@@ -68,11 +70,11 @@ CAIDA_CDF = "~/bundler-script/distributions/CAIDA_CDF"
         target = "target/release/ccp_const"
 
 [experiment]
-seed      = [0, 17, 26, 28, 41, 62, 67, 68, 88, 99]
-sch       = ['sfq', 'fifo']
+seed      = [26] # 0, 17, 28, 41, 62, 67, 68, 88, 99]
+sch       = ['sfq'] # , 'fifo'
 alg       = [
-    { name = 'nimbus' },
-    { name = 'nobundler' }
+    { name = 'nimbus' } #,
+    #{ name = 'nobundler' }
 ]
 rate      = [96]
 rtt       = [50]

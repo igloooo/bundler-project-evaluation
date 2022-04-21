@@ -80,12 +80,13 @@ def init_repo(config, machines):
             res = machines[m].run(clone)
         else:
             # previously cloned, update to latest commit
-            machines[m].run(f"cd {root} && git pull origin cloudlab")
-            machines[m].run(f"cd {root} && git submodule update --init --recursive")
+            #machines[m].run(f"cd {root} && git pull origin cloudlab")
+            #machines[m].run(f"cd {root} && git submodule update --init --recursive")
+            pass
         agenda.subtask("compiling experiment tools")
-        machines[m].run(f"make -C {root}",
-            stdout=f"{config['structure']['bundler_root']}/{m}.out.mk",
-            stderr=f"{config['structure']['bundler_root']}/{m}.err.mk")
+        #machines[m].run(f"make -C {root}",
+            #stdout=f"{config['structure']['bundler_root']}/{m}.out.mk",
+            #stderr=f"{config['structure']['bundler_root']}/{m}.err.mk")
 
 def bootstrap_topology(config, machines):
     config = get_interfaces(config, machines)

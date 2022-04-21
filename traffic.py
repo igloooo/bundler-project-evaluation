@@ -140,7 +140,7 @@ class CBRTraffic(Traffic):
             stdout=ccp_out,
             stderr=ccp_out,
         ), "Failed to start ccp_const agent")
-
+         
         expect(
             node.run(
                 "{path} -s -p {port} --reverse -i {report_interval} -t {length} -Z ccp".format(
